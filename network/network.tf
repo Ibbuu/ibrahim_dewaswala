@@ -170,13 +170,47 @@ resource "aws_security_group" "sgp_backend_instances" {
   }
   egress {
     description     = "Allow connection to database"
+    from_port       = -1
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sgp_database.id]
+  }
+
+  tags = {
+    Name = "SGP-BACKEND-INSTANCES-${var.app}-${var.environment}"
+  }
+}
+
+#Security Group for Database
+resource "aws_security_group" "sgp_database" {
+  name        = "SGP-DATABASE-${var.app}-${var.environment}"
+  description = "Security Group for Database Instance"
+  vpc_id      = aws_vpc.vpc.id
+
+  ingress {
+    description     = "HTTP from internal load balancer"
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
     security_groups = [aws_security_group.sgp_internal_lb.id]
   }
 
+  ingress {
+    description     = "HTTPS from internal load balancer"
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sgp_internal_lb.id]
+  }
+  egress {
+    description     = "Allow connection to database"
+    from_port       = -1
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sgp_database.id]
+  }
+
   tags = {
-    Name = "SGP-FRONTEND-INSTANCES-${var.app}-${var.environment}"
+    Name = "SGP-BACKEND-INSTANCES-${var.app}-${var.environment}"
   }
 }
