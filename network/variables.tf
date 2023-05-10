@@ -1,7 +1,7 @@
 variable "vpc_cidr" {
   type = string
-  descdescription = "CIDR block for the vpc"
-  defaudefault = "10.0.0.0/16"  
+  description = "CIDR block for the vpc"
+  default = "10.0.0.0/16"  
 }
 
 variable "environment" {
