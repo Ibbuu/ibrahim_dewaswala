@@ -35,7 +35,7 @@ def get_records():
     return jsonify(data=results)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=80)
 
 EOL
 python backend.py --host ${host} --db ${db} --user ${user} --password ${password}
