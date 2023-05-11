@@ -1,3 +1,4 @@
+
 def get_value(obj, path):
     keys = path.split('/')
     if len(keys) == 0:
@@ -24,14 +25,51 @@ def get_value(obj, path):
         else:
             return None
 
-nested_object = {
+
+
+
+def test_a():
+    nested_object = {
     'a': {
         'b': {
             'c': [{"d":[8]},{"f":"l"}]
         }
     }
 }
+    path = 'a/b/c/d'
+    assert get_value(nested_object, path) == 8
 
-path = 'a/b/c/d'
-value = get_value(nested_object, path)
-print(value)
+
+def test_b():
+    nested_object = {
+    'a': {
+        'b': {
+            'c': [{"d":[8]},{"f":"l"}]
+        }
+    }
+}
+    path = 'a/b/c/d'
+    assert get_value(nested_object, path) == "a"
+
+
+def test_b():
+    nested_object = {
+    'a': {
+        'b': {
+            'c': [{"d":"e"},{"f":"l"}]
+        }
+    }
+}
+    path = 'a/b/c/d'
+    assert get_value(nested_object, path) == "e"
+
+def test_c():
+    nested_object = {
+    'a': {
+        'b': {
+            'c': [{"d":"e"},{"f":"l"}]
+        }
+    }
+}
+    path = 'k'
+    assert get_value(nested_object, path) == None
