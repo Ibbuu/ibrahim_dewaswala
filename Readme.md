@@ -1,4 +1,4 @@
 The repo contains code and solution to all the 3 problems
-Prob 1 - All terraform code is present in root folder.main.tf has reference to all involved modules. We can create a seprate tfvars file but for sake of simplicity, defaults are provided in variables.tf. The frontend docker image is not a complete application,rather its just a dummy to show the process and architecture.
-Prob 2 - Under scripts/get_metadata.py
-Prob 3 - Under scripts/get_nested_value.py
+Prob 1 - All terraform code is present in root folder.main.tf has reference to all involved modules. We can create a seprate tfvars file but for sake of simplicity, defaults are provided in variables.tf. The frontend docker image is not a complete application,rather its just a dummy to show the process and architecture. The terraform can be run using following command - terraform apply
+Prob 2 - Under scripts/get_metadata.py. Script has 3 arguments namely the instance id for which metadata is fetched, key to fetch particular metadata and an all flag to get all the metadata in json. python get_metadata.py -i <instance id> -k <key to particular metadata> --all(if all of metadata is needed)
+Prob 3 - Under scripts/get_nested_value.py. The script has pytest use cases as well. python -m pytest command to run the pytest
