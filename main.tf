@@ -1,7 +1,7 @@
 resource "aws_kms_key" "kms" {
   description             = "KMS key to ecrypt database"
   tags = {
-    Name = "KMS-${var.app}-${var.environment}"
+    Name = "KMS-${var.app}-${var.environment}-01"
   }
 }
 
